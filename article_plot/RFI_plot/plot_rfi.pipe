@@ -1,0 +1,23 @@
+
+pipe_tasks = []
+pipe_outdir = './output_rfi/
+pipe_logging = 'notset'
+pipe_timing = True
+pipe_flush = True
+
+import glob
+data_dir2 = '~/sfzuo/workspace/cyl_20170927/output_5days/data/rfi_flagging/0'
+files2 = sorted(glob.golb(data_dir2+'/*.hdf5'))
+files = files2[:]
+
+from tlpipe.plot import plot_waterfall
+pipe_tasks.append(plot_waterfall.Plot)
+pwf_input_files = files
+pwf_flag_mask = True
+pwf_flag_ns = True
+pwf_interpolate_ns = True
+pwf_abs_only = True
+pwf_gray_color = False
+pwf_fig_name = 'rvis_flag/vis'
+pwf_out = 'pwf'
+
