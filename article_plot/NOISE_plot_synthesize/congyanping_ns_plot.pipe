@@ -1,0 +1,31 @@
+# -*- mode: python; -*-
+
+pipe_tasks = []
+pipe_outdir = './data_output_for_four_frequency_same_baseline_0/'
+pipe_logging = 'notset'
+pipe_timing = True
+pipe_flush = True
+
+
+ps_output_files = ['/public/home/wufq/sfzuo/workspace/cyl_20170927/output_5days//data/ps_cal/0/file_%d.hdf5' %i for i in range(2,3)]
+#ps_output_files = ['/public/home/wufq/congyanping/NOISE-PLOTE-SYNTHESIZE/output_5days//data/ps_cal/0/file_%d.hdf5' %i for i in range(1,7)]
+#from tlpipe.plot import plot_waterfall
+#pipe_tasks.append(plot_waterfall.Plot)
+#pwf_input_files = ps_output_files
+#pwf_flag_mask = True
+#pwf_flag_ns = True
+#pwf_abs_only = True
+#pwf_gray_color = True
+#pwf_color_flag = True
+#pwf_fig_name = 'rvis_flag/vis'
+#pwf_out = 'pwf'
+
+
+
+
+from tlpipe.timestream import congyanping_rfi_stats_noise_plot_synthesize
+pipe_tasks.append(congyanping_rfi_stats_noise_plot_synthesize.Stats)
+rs_input_files = ps_output_files 
+rs_excl_auto = True
+rs_fig_name = 'stats_sir/stats'
+rs_out = 'rs'

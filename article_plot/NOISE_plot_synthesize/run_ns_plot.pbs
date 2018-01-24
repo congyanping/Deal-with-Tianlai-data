@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#PBS -N cong_plot_noise_data_long_baseline
+#PBS -l nodes=1:ppn=1
+#PBS -k n
+#PBS -V
+#PBS -S /bin/bash 
+#PBS -q small
+
+cd $PBS_O_WORKDIR
+
+ulimit -n 2048
+
+NP=`cat $PBS_NODEFILE | wc -l`
+mpirun -np $NP -machinefile $PBS_NODEFILE tlpipe congyanping_ns_plot.pipe &> output.txt
